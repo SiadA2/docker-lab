@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 import redis
 
 app = Flask(__name__)
@@ -9,13 +9,14 @@ r = redis.Redis(host=redis_host, port=redis_port)
 
 @app.route('/')
 def welcome_message():
-    return "Welcome to Siad's local webpage"
+    return 'Welcome to the flask visit counter'
 
 
 @app.route('/count')
 def web_count():
     count = r.incr('counter')
     return f'This page has been visited {count} times'
+
 
 
 
